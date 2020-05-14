@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define Max 10
+#define false -1
+
+int BinarySearch(int a[], int value, int low, int high)
+{
+	/*if (low > high)
+	{
+	printf("error: no such number\n");
+	return false;
+	}*/
+	if (low <= high){
+		int mid = (low + high) / 2;
+		if (a[mid] == value) return mid;
+		else if (a[mid] > value) high = mid - 1;
+		else low = mid + 1;
+		BinarySearch(a, value, low, high);
+	}
+	else
+		return false;
+}
+
+int main()
+{
+	int a[Max] = { 5, 18, 25, 36, 70, 88, 100, 150, 212, 277 }, low = 0, high = Max - 1;
+	int value = 2, index = false;
+	/*if (value == a[low])
+		index = low;
+		else if (value == a[high])
+		index = high;
+		else*/
+	index = BinarySearch(a, value, low, high);
+	if (index == false)
+		printf("输入数据有错！");
+	else
+		printf("%d对应的下标为%d", value, index);
+	getchar();
+}
